@@ -1,0 +1,58 @@
+version: "3"
+services:
+  default-lb:
+    restart: "always"
+    build: ./upstream-lb
+    volumes:
+      - ./upstream-lb/nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - app1
+      - app2
+    ports:
+      - 8888:80
+
+  session-lb:
+    restart: "always"
+    build: ./session-persist-lb
+    volumes:
+      - ./session-persist-lb/nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - app1
+      - app2
+    ports:
+      - 8889:80
+
+  least-connected-lb:
+    restart: "always"
+    build: ./least-connected-lb
+    volumes:
+      - ./least-connected-lb/nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - app1
+      - app2
+    ports:
+      - 8890:80
+
+  weight-lb:
+    restart: "always"
+    build: ./weight-lb
+    volumes:
+      - ./weight-lb/nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - app1
+      - app2
+    ports:
+      - 8891:80
+
+  app1:
+    restart: "always"
+    build: ./app
+    environment:
+      - PORT=1111
+    
+  app2:
+    restart: "always"
+    build: ./app
+    environment:
+      - PORT=2222
+    
