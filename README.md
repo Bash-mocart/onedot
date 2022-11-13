@@ -1,5 +1,22 @@
 ## Microservices with Docker Compose and NGINX Load Balancer
+## Stacks 
+    * Terraform
+    * AWS
+    * Python
+    * Docker
+    * NGINX
+    * Nodejs
 
+## STEPS TO REPRODUCE
+
+I used terraform cloud workspaces so you have to edit the `onedot-autoscaling-terraform/production/provider.tf` accordingly. [a relative link](onedot-autoscaling-terraform/production/provider.tf)
+
+```
+cd onedot-autoscaling-terraform
+cd production
+terraform apply
+
+```
 
 ### Directory structure
 ```
