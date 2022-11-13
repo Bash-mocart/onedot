@@ -11,10 +11,10 @@ terraform {
     }
   }
   cloud {
-    organization = "onedot-infra"
+    organization = "onedot-infra" ## see https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/organizations
 
     workspaces {
-      name = "onedot-prod"
+      name = "onedot-prod" ## see https://developer.hashicorp.com/terraform/cloud-docs/workspaces/creating
     }
   }
 
@@ -49,7 +49,7 @@ module "loadbalancer" {
   project            = var.project
 
 }
-# networking module containing vpc, 2 public subnets, s3 bucket, security groups, routing tables, internet gateway
+# networking module containing vpc, 2 public subnets, security groups, routing tables, internet gateway
 module "networking" {
   source      = "../modules/networking/"
   environment = "production"
